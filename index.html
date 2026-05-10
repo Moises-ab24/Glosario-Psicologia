@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="images/glosario.jpg">
+  <title>Glosario Académico — Psicología</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Lora:ital,wght@0,400;0,500;1,400&family=IM+Fell+English:ital@0;1&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+
+</head>
+
+<body>
+
+  <div class="top-label">✦ Glosario Académico ✦</div>
+
+  <div class="book-wrap">
+    <div class="page-left" id="pageLeft">
+      <div class="left-inner" id="leftInner"></div>
+    </div>
+    <div class="spine"></div>
+    <div class="page-right" id="pageRight">
+      <div class="right-inner" id="rightInner"></div>
+    </div>
+  </div>
+
+  <div class="controls">
+    <button class="btn" id="btnPrev">← Anterior</button>
+    <div class="indicator" id="indicator">Portada</div>
+    <button class="btn" id="btnNext">Siguiente →</button>
+  </div>
+  <div style="margin-top:10px;">
+    <button class="btn" id="btnHome" onclick="navigateHome()">↩ Inicio</button>
+  </div>
+  <script src="app.js"></script>
+</body>
+
+</html>

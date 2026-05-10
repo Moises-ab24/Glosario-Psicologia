@@ -1,0 +1,581 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --cream: #f5f0e8;
+    --cream-dark: #ede6d6;
+    --ink: #1a1209;
+    --ink-light: #3d2f1a;
+    --accent: #8b2c2c;
+    --gold: #b8860b;
+    --gold-light: #e8c060;
+    --spine: #5a2d1a;
+}
+
+body {
+    background: #361f14;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Lora', Georgia, serif;
+    padding: 20px 12px;
+}
+
+.top-label {
+    font-family: 'IM Fell English', serif;
+    font-size: 11px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-bottom: 18px;
+    text-align: center;
+}
+
+/* ── Libro desktop (dos páginas) ── */
+.book-wrap {
+    display: flex;
+    align-items: stretch;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.85), 0 10px 30px rgba(0, 0, 0, 0.5);
+    border-radius: 4px;
+    overflow: hidden;
+    width: 100%;
+    max-width: 778px;
+}
+
+.spine {
+    width: 18px;
+    background: linear-gradient(to right, #2a1208, var(--spine), #3d1f10, var(--spine), #2a1208);
+    flex-shrink: 0;
+    position: relative;
+}
+
+.spine::after {
+    content: 'PSICOLOGÍA';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(90deg);
+    font-family: 'IM Fell English', serif;
+    font-size: 7px;
+    letter-spacing: 3px;
+    color: rgba(212, 168, 67, 0.4);
+    white-space: nowrap;
+}
+
+/* Página izquierda */
+.page-left {
+    flex: 1;
+    min-width: 0;
+    background: var(--cream-dark);
+    position: relative;
+    overflow: hidden;
+}
+
+.page-left::after {
+    content: '';
+    position: absolute;
+    inset: 14px;
+    border: 1px solid rgba(139, 44, 44, 0.18);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.left-inner {
+    width: 100%;
+    height: 100%;
+    min-height: 520px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 28px 32px 36px;
+    text-align: center;
+}
+
+.left-num {
+    font-family: 'IM Fell English', serif;
+    font-size: 70px;
+    color: rgba(139, 44, 44, 0.1);
+    line-height: 1;
+    margin-bottom: 6px;
+}
+
+.left-term {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 900;
+    color: var(--ink);
+    line-height: 1.2;
+    margin-bottom: 14px;
+}
+
+.left-rule {
+    width: 50px;
+    height: 2px;
+    background: linear-gradient(to right, transparent, var(--accent), transparent);
+    margin: 0 auto 18px;
+}
+
+.img-box {
+    width: 100%;
+    aspect-ratio: 4/3;
+    background: linear-gradient(135deg, #e4d9c0, #cfc3a0);
+    border: 1px solid rgba(139, 44, 44, 0.18);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.img-box::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(45deg, transparent, transparent 12px, rgba(139, 44, 44, 0.04) 12px, rgba(139, 44, 44, 0.04) 24px);
+}
+
+.img-box img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.img-icon {
+    font-size: 28px;
+    opacity: 0.25;
+    margin-bottom: 6px;
+    position: relative;
+}
+
+.img-label {
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: var(--ink-light);
+    opacity: 0.35;
+    text-transform: uppercase;
+    position: relative;
+}
+
+/* Página derecha */
+.page-right {
+    flex: 1;
+    min-width: 0;
+    background: var(--cream);
+    position: relative;
+    overflow: hidden;
+    box-shadow: inset 6px 0 20px rgba(0, 0, 0, 0.07);
+}
+
+.page-right::after {
+    content: '';
+    position: absolute;
+    inset: 14px;
+    border: 1px solid rgba(139, 44, 44, 0.15);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.right-inner {
+    width: 100%;
+    height: 100%;
+    min-height: 520px;
+    padding: 32px 36px 32px 28px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Animación slide */
+.page-left,
+.page-right {
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.slide-out-left {
+    opacity: 0 !important;
+    transform: translateX(-20px) !important;
+}
+
+.slide-out-right {
+    opacity: 0 !important;
+    transform: translateX(20px) !important;
+}
+
+/* ── Portada ── */
+.cover {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 100%;
+    padding: 20px 0;
+}
+
+.cover-ornament {
+    font-size: 20px;
+    color: var(--gold);
+    opacity: 0.6;
+    margin-bottom: 16px;
+    letter-spacing: 6px;
+}
+
+.cover-tag {
+    font-family: 'IM Fell English', serif;
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+}
+
+.cover-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 900;
+    color: var(--ink);
+    line-height: 1.1;
+    margin-bottom: 8px;
+}
+
+.cover-sub {
+    font-family: 'IM Fell English', serif;
+    font-size: 14px;
+    font-style: italic;
+    color: var(--ink-light);
+    margin-bottom: 24px;
+}
+
+.cover-line {
+    width: 70px;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+    margin: 0 auto 24px;
+}
+
+.cover-info {
+    font-family: 'Lora', serif;
+    font-size: 11px;
+    color: rgba(61, 47, 26, 0.55);
+    line-height: 2.2;
+}
+
+.cover-year {
+    font-family: 'Playfair Display', serif;
+    font-size: 12px;
+    color: var(--accent);
+    margin-top: 20px;
+    letter-spacing: 4px;
+}
+
+/* ── Término ── */
+.term-header {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.term-big-letter {
+    font-family: 'Playfair Display', serif;
+    font-size: 44px;
+    font-weight: 900;
+    color: var(--accent);
+    opacity: 0.2;
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+.term-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.2;
+}
+
+.term-rule {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, var(--accent), var(--gold-light), transparent);
+    margin-bottom: 12px;
+    flex-shrink: 0;
+}
+
+.term-def {
+    font-family: 'Lora', serif;
+    font-size: 12.5px;
+    line-height: 1.8;
+    color: var(--ink-light);
+    flex: 1;
+    margin-bottom: 12px;
+}
+
+.term-ex {
+    background: rgba(139, 44, 44, 0.06);
+    border-left: 2px solid var(--accent);
+    padding: 9px 12px;
+    margin-bottom: 12px;
+    flex-shrink: 0;
+}
+
+.term-ex-label {
+    font-family: 'Playfair Display', serif;
+    font-size: 8px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-style: italic;
+    margin-bottom: 4px;
+}
+
+.term-ex-text {
+    font-family: 'Lora', serif;
+    font-size: 11px;
+    font-style: italic;
+    color: var(--ink-light);
+    line-height: 1.5;
+}
+
+.term-source {
+    font-family: 'Lora', serif;
+    font-size: 9px;
+    color: rgba(61, 47, 26, 0.45);
+    line-height: 1.4;
+    border-top: 1px solid rgba(139, 44, 44, 0.12);
+    padding-top: 9px;
+    flex-shrink: 0;
+}
+
+.term-source b {
+    font-size: 8px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+}
+
+.page-num {
+    font-family: 'IM Fell English', serif;
+    font-size: 10px;
+    color: rgba(61, 47, 26, 0.3);
+    letter-spacing: 1px;
+    text-align: center;
+    margin-top: 8px;
+    flex-shrink: 0;
+}
+
+/* ── Referencias ── */
+.refs-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--ink);
+    text-align: center;
+    margin-bottom: 6px;
+}
+
+.refs-rule {
+    width: 50px;
+    height: 2px;
+    background: linear-gradient(to right, transparent, var(--accent), transparent);
+    margin: 0 auto 14px;
+}
+
+.refs-scroll {
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 4px;
+}
+
+.refs-scroll::-webkit-scrollbar {
+    width: 3px;
+}
+
+.refs-scroll::-webkit-scrollbar-thumb {
+    background: rgba(139, 44, 44, 0.25);
+    border-radius: 2px;
+}
+
+.ref-item {
+    font-family: 'Lora', serif;
+    font-size: 9px;
+    color: var(--ink-light);
+    line-height: 1.5;
+    margin-bottom: 7px;
+    padding-bottom: 7px;
+    border-bottom: 1px solid rgba(139, 44, 44, 0.08);
+}
+
+.ref-item:last-child {
+    border-bottom: none;
+}
+
+/* ── Controles ── */
+.controls {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 20px;
+    width: 100%;
+    max-width: 778px;
+    justify-content: center;
+}
+
+.btn {
+    background: transparent;
+    border: 1px solid rgba(212, 168, 67, 0.35);
+    color: var(--gold-light);
+    font-family: 'Playfair Display', serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+    flex-shrink: 0;
+}
+
+.btn:hover {
+    background: rgba(212, 168, 67, 0.08);
+    border-color: var(--gold-light);
+}
+
+.btn:disabled {
+    opacity: 0.2;
+    cursor: default;
+}
+
+.indicator {
+    font-family: 'IM Fell English', serif;
+    font-size: 12px;
+    color: rgba(212, 168, 67, 0.4);
+    letter-spacing: 2px;
+    min-width: 80px;
+    text-align: center;
+}
+
+/* ══════════════════════════════════════
+   RESPONSIVE — celular (una sola página)
+   ══════════════════════════════════════ */
+@media (max-width: 600px) {
+
+    body {
+        padding: 16px 10px;
+        justify-content: flex-start;
+        padding-top: 24px;
+    }
+
+    .top-label {
+        font-size: 9px;
+        letter-spacing: 3px;
+        margin-bottom: 14px;
+    }
+
+    .book-wrap {
+        flex-direction: column;
+        max-width: 100%;
+        border-radius: 6px;
+        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.8);
+    }
+
+    /* En móvil escondemos la página izquierda y el lomo */
+    .page-left {
+        display: none;
+    }
+
+    .spine {
+        display: none;
+    }
+
+    /* La página derecha ocupa todo */
+    .page-right {
+        box-shadow: none;
+        width: 100%;
+    }
+
+    .page-right::after {
+        inset: 10px;
+    }
+
+    .right-inner {
+        min-height: auto;
+        padding: 28px 24px 24px 24px;
+    }
+
+    /* Portada móvil */
+    .cover-title {
+        font-size: 30px;
+    }
+
+    .cover-sub {
+        font-size: 13px;
+    }
+
+    .cover-ornament {
+        font-size: 16px;
+    }
+
+    /* Término móvil */
+    .term-big-letter {
+        font-size: 38px;
+    }
+
+    .term-title {
+        font-size: 20px;
+    }
+
+    .term-def {
+        font-size: 13px;
+        line-height: 1.75;
+    }
+
+    .term-ex-text {
+        font-size: 12px;
+    }
+
+    .term-source {
+        font-size: 9.5px;
+    }
+
+    /* Imagen: en móvil la mostramos dentro de la página derecha arriba del contenido */
+    .mobile-img-area {
+        display: block !important;
+        width: 100%;
+        aspect-ratio: 16/9;
+        margin-bottom: 14px;
+        flex-shrink: 0;
+    }
+
+    /* Controles móvil */
+    .controls {
+        gap: 10px;
+        margin-top: 14px;
+    }
+
+    .btn {
+        font-size: 10px;
+        padding: 10px 14px;
+        letter-spacing: 1px;
+    }
+
+    .indicator {
+        font-size: 11px;
+        min-width: 60px;
+    }
+}
+
+/* Esconder el área de imagen móvil en desktop */
+.mobile-img-area {
+    display: none;
+}
